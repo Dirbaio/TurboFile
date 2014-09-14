@@ -1,0 +1,51 @@
+server {
+	listen 80;
+#	listen [::]:80 ipv6only=on;
+
+	server_name turbofile.test;
+#	root /home/dirbaio/www/turbofile;
+
+	set $turbofile /home/dirbaio/www/turbofile/;
+	set $files /home/dirbaio/www/turbofile_files/;
+
+	location /_files/ {
+		internal;
+		alias $files;
+	}
+
+	location /_turbofile/ {
+		alias $turbofile;
+	}
+
+	location ~ ^/_turbofile/.*\.php$ {
+		return 403;
+	}
+
+	location / {
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		# NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+	
+		# With php5-fpm:
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_index index.php;
+		include fastcgi_params;
+		fastcgi_param SCRIPT_FILENAME $turbofile/turbofile.php;
+	}
+
+	location ~ ^/_files(/.*\.php)$ {
+		internal;
+		alias $files;
+
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		# NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+	
+		# With php5-fpm:
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_index index.php;
+		include fastcgi_params;
+                fastcgi_param  SCRIPT_FILENAME  $files$1;
+#		fastcgi_param SCRIPT_FILENAME $turbofile/turbofile.php;
+	}
+
+}
+
