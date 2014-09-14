@@ -1,0 +1,1 @@
+ng-class="{selected: file.name==($parent.$index+1 < panels.length ? panels[$parent.$index+1].name : '...')}"

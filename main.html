@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="TurboFileApp" ng-controller="TurboFileCtrl">
+<head>
+	<base href="/">
+	<title>{{$location.path()}}</title>
+	<link rel="stylesheet" type="text/css" href="/_turbofile/css/app.css">
+	<link rel="stylesheet" type="text/css" href="/_turbofile/css/theme2.css">
+	<link rel="stylesheet" type="text/css" href="/_turbofile/css/animations.css">
+</head>
+<body ng-class="{animate: animate}">
+	<div class="panels">
+		<div class="panel"
+		     ng-repeat="panel in panels"
+		     ng-class="{
+			     	hasnext: !$last,
+			     	panel_dir: panel.type=='dir',
+			     	panel_file: panel.type=='file',
+			     }">
+			<div class="panel_inner"
+			     ng-class="{
+			     	hasnext: !$last,
+			     	panel_dir: panel.type=='dir',
+			     	panel_file: panel.type=='file',
+			     }"
+			     style="transform:translateX({{calcLeft($index)}}px);"
+			     ng-switch="panel.type">
+				<div ng-switch-when="dir">
+					<a class="header" href="{{panel.path}}" reload="panel.reload">
+						{{panel.name}}/
+					</a>
+					<a class="file"
+					   ng-repeat="file in panel.files"
+					   href="{{file.link}}"
+					   ng-class="{selected: file.name==panels[$parent.$index+1].name}"
+					   reload="file.reload">
+						{{file.name}}{{file.type=='dir'?'/':''}}
+					</a>
+				</div>
+				<div ng-switch-when="file" class="h100">
+					<a class="header" href="{{panel.path}}" reload="true">
+						{{panel.name}}
+					</a>
+					<div ng-switch on="panel.filetype" class="fileview file_{{panel.filetype}}">
+						<a ng-switch-when="image" href="{{panel.path}}" reload="true">
+							<img src="{{panel.path}}">
+						</a>
+
+						<div ng-switch-when="text" class="textview">{{panel.text}}</div>
+
+						<audio ng-switch-when="audio" controls autoplay>
+							<source ng-src="{{panel.path}}" type="{{panel.mimetype}}">
+							Your browser does not support the audio element.
+						</audio>
+
+						<video ng-switch-when="video" autoplay controls>
+							<source ng-src="{{panel.path}}" type="{{panel.mimetype}}">
+							Your browser does not support the audio element.
+						</video>
+
+						<div ng-switch-default>
+							??? {{panel.filetype}}
+						</div>
+					</ng-switch>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/_turbofile/js/angular.min.js"></script>
+	<script type="text/javascript" src="/_turbofile/js/angular-animate.min.js"></script>
+	<script type="text/javascript" src="/_turbofile/js/turbofile.js"></script>
+</body>
+</html>

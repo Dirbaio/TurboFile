@@ -1,0 +1,155 @@
+.animate .panel, .animate .panel_inner {
+	-webkit-transition: 0.3s -webkit-transform ease-out;
+	-o-transition: 0.3s -o-transform ease-out;
+	-ms-transition: 0.3s -ms-transform ease-out;
+	transition: 0.3s transform ease-out;
+}
+
+.panel.ng-enter {
+	z-index:-10;
+}
+
+.panel.ng-leave {
+	z-index:-20;
+}
+
+.panel.ng-enter {
+	-webkit-transform: translateX(-200px);
+	transform: translateX(-200px);
+}
+.panel.ng-enter + .panel.ng-enter {
+	-webkit-transform: translateX(-400px);
+	transform: translateX(-400px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter {
+	-webkit-transform: translateX(-600px);
+	transform: translateX(-600px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter {
+	-webkit-transform: translateX(-800px);
+	transform: translateX(-800px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter {
+	-webkit-transform: translateX(-1000px);
+	transform: translateX(-1000px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter {
+	-webkit-transform: translateX(-1200px);
+	transform: translateX(-1200px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter {
+	-webkit-transform: translateX(-1400px);
+	transform: translateX(-1400px);
+}
+.panel.ng-enter.ng-enter-active {
+	-webkit-transform: translateX(0px)!important;
+	transform: translateX(0px)!important;
+}
+
+
+
+.panel.ng-leave {
+	-webkit-transform: translateX(0px);
+	transform: translateX(0px);
+}
+.panel.ng-leave-active {
+	-webkit-transform: translateX(-200px);
+	transform: translateX(-200px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active {
+	-webkit-transform: translateX(-400px);
+	transform: translateX(-400px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active {
+	-webkit-transform: translateX(-600px);
+	transform: translateX(-600px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active {
+	-webkit-transform: translateX(-800px);
+	transform: translateX(-800px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active {
+	-webkit-transform: translateX(-1000px);
+	transform: translateX(-1000px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active {
+	-webkit-transform: translateX(-1200px);
+	transform: translateX(-1200px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active {
+	-webkit-transform: translateX(-1400px);
+	transform: translateX(-1400px);
+}
+
+
+
+
+.panel.ng-enter.panel_file {
+	-webkit-transform: translateX(-800px);
+	transform: translateX(-800px);
+}
+.panel.ng-enter + .panel.ng-enter.panel_file {
+	-webkit-transform: translateX(-1000px);
+	transform: translateX(-1000px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter.panel_file {
+	-webkit-transform: translateX(-1200px);
+	transform: translateX(-1200px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter.panel_file {
+	-webkit-transform: translateX(-1400px);
+	transform: translateX(-1400px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter.panel_file {
+	-webkit-transform: translateX(-1600px);
+	transform: translateX(-1600px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter.panel_file {
+	-webkit-transform: translateX(-1800px);
+	transform: translateX(-1800px);
+}
+.panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter + .panel.ng-enter.panel_file {
+	-webkit-transform: translateX(-2000px);
+	transform: translateX(-2000px);
+}
+
+
+.panel.ng-enter.ng-enter-active.panel_file {
+	-webkit-transform: translateX(0px)!important;
+	transform: translateX(0px)!important;
+}
+
+
+
+.panel.ng-leave.panel_file {
+	-webkit-transform: translateX(0px);
+	transform: translateX(0px);
+}
+.panel.ng-leave-active.panel_file {
+	-webkit-transform: translateX(-800px);
+	transform: translateX(-800px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active.panel_file {
+	-webkit-transform: translateX(-1000px);
+	transform: translateX(-1000px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active.panel_file {
+	-webkit-transform: translateX(-1200px);
+	transform: translateX(-1200px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active.panel_file {
+	-webkit-transform: translateX(-1400px);
+	transform: translateX(-1400px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active.panel_file {
+	-webkit-transform: translateX(-1600px);
+	transform: translateX(-1600px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active.panel_file {
+	-webkit-transform: translateX(-1800px);
+	transform: translateX(-1800px);
+}
+.panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active + .panel.ng-leave-active.panel_file {
+	-webkit-transform: translateX(-2000px);
+	transform: translateX(-2000px);
+}

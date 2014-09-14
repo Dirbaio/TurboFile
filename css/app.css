@@ -1,0 +1,96 @@
+body, html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+body {
+	font-size: 10pt;
+	font-family: "Verdana", "Lucida Grande", sans-serif;
+}
+
+.panel {
+	position: absolute;
+	height: 100%;
+	top: 0;
+
+	/* Avoid transparent panels blocking clicks */
+	width: 0;
+
+	-webkit-transform: translateX(0px);
+	transform: translateX(0px);
+}
+
+.panel_inner {
+	position: relative;
+	height: 100%;
+	top: 0;
+	left: 0;
+
+	width: 200px;
+	background: white;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	-webkit-transform: translateX(0px);
+	transform: translateX(0px);
+}
+
+.panel_inner.panel_file {
+	width: 800px;
+}
+
+
+.panel .header {
+	display: block;
+	padding: 2px 10px;
+	font-size:20pt;
+	text-decoration: none;
+	font-weight: bold;
+
+	height: 40px;
+	box-sizing: border-box;
+}
+
+.panel a.file {
+	display: block;
+	padding: 2px 10px;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.panel a.file.selected {
+	background: blue;
+	color: white;
+}
+
+.textview {
+	white-space:pre-wrap;
+	font-family: monospace;
+}
+
+.fileview {
+	width: 100%;
+	height: calc(100% - 40px);
+	box-sizing: border-box;
+
+	padding: 10px;
+
+	text-align: center;
+}
+
+.fileview.file_text {
+	text-align: left;
+}
+
+.fileview img, .fileview video {
+	max-width: 100%;
+	max-height: 100%;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+}
+
+.h100 {
+	height: 100%;
+}
