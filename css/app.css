@@ -52,6 +52,7 @@ body {
 
 	height: 40px;
 	box-sizing: border-box;
+	overflow: hidden;
 }
 
 .panel a.file {
