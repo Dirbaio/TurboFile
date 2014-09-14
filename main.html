@@ -36,6 +36,12 @@
 						{{file.name}}{{file.type=='dir'?'/':''}}
 					</a>
 				</div>
+				<div ng-switch-when="nope">
+					<a class="header" href="{{panel.path}}" reload="panel.reload">
+						NOPE!
+					</a>
+					Sorry, you don't have permission to view this :(
+				</div>
 				<div ng-switch-when="file" class="h100">
 					<a class="header" href="{{panel.path}}" reload="true">
 						{{panel.name}}

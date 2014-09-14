@@ -101,12 +101,18 @@ function listPath($path)
 	$path = fixPath($path);
 	$path = rtrim($path, '/');
 
+	if(!canAccess($path))
+		return array(
+			'type' => 'nope',
+			'path' => $path,
+		);
+
 	if(is_dir($config['files'].$path))
 		return listDir($path);
-	else if(is_file($config['files'].$path))
+	if(is_file($config['files'].$path))
 		return listFile($path);
-	else
-		return list404();
+	
+	return list404();
 }
 
 json(array_map('listPath', $input['paths']));

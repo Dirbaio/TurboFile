@@ -36,6 +36,40 @@ function json($data)
 	die();
 }
 
+// ACLs
+
+function canAccessPath($path) {
+	global $config;
+
+	if(!is_dir($config['files'].$path)) return true;
+	if(!is_file($config['files'].$path.'/.acl.json')) return true;
+
+	$acl = file_get_contents($config['files'].$path.'/.acl.json');
+	$acl = json_decode($acl, true);
+
+	if(!$acl)
+		return false;
+
+	// TODO parse ACL
+	return true;
+}
+
+function canAccess($path) {
+	$input = explode("/", $path);
+	$path = '';
+	if(!canAccessPath($path))
+		return false;
+	foreach($input as $dir) {
+		if($dir == '' || $dir == '.' || $dir == '..')
+			continue;
+
+		$path .= '/'.$dir;
+		if(!canAccessPath($path))
+			return false;
+	}
+	return true;
+}
+
 
 
 

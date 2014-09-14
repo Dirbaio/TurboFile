@@ -23,19 +23,24 @@ if(preg_match('#^/_turbofile_api/(\w+)$#', $path, $matches))
 
 	require __DIR__.'/api/'.$matches[1].'.php';
 }
-else if(is_dir($config['files'].$path)) {
-	if(is_file($config['files'].$path.'index.php'))
-		header("X-Accel-Redirect: /_files".$path."index.php");
-	else if(is_file($config['files'].$path.'index.html'))
-		header("X-Accel-Redirect: /_files".$path."index.html");
-	else if(is_file($config['files'].$path.'index.htm'))
-		header("X-Accel-Redirect: /_files".$path."index.htm");
-	else
-		header("X-Accel-Redirect: /_turbofile/main.html");
-}
 else {
-	// Setting Content-Type to empty will cause nginx
-	// to set the correct type when doing the accel redirect
-	header("Content-Type: ");
-	header("X-Accel-Redirect: /_files".$path);
+	if(!canAccess($path))
+		die("NOPE");
+	
+	if(is_dir($config['files'].$path)) {
+		if(is_file($config['files'].$path.'index.php'))
+			header("X-Accel-Redirect: /_files".$path."index.php");
+		else if(is_file($config['files'].$path.'index.html'))
+			header("X-Accel-Redirect: /_files".$path."index.html");
+		else if(is_file($config['files'].$path.'index.htm'))
+			header("X-Accel-Redirect: /_files".$path."index.htm");
+		else
+			header("X-Accel-Redirect: /_turbofile/main.html");
+	}
+	else {
+		// Setting Content-Type to empty will cause nginx
+		// to set the correct type when doing the accel redirect
+		header("Content-Type: ");
+		header("X-Accel-Redirect: /_files".$path);
+	}
 }
