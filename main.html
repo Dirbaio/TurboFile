@@ -42,7 +42,7 @@
 					</a>
 					<div ng-switch on="panel.filetype" class="fileview file_{{panel.filetype}}">
 						<a ng-switch-when="image" href="{{panel.path}}" reload="true">
-							<img src="{{panel.path}}">
+							<img ng-src="{{panel.path}}">
 						</a>
 
 						<div ng-switch-when="text" class="textview">{{panel.text}}</div>

@@ -8,6 +8,13 @@ app.controller('TurboFileCtrl', function ($scope, ajax, $location, $timeout, $wi
 		$scope.data = data;
 	});
 
+	// Hax to trigger digest on resize, so the panels get
+	// rearranged properly.
+	var w = angular.element($window);
+	w.bind('resize', function() {
+		$scope.$apply();
+	})
+
 	$scope.panels = [];
 
 	//Hax for avoiding initial loading animation
