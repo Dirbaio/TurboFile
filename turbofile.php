@@ -24,7 +24,7 @@ if(preg_match('#^/_turbofile_api/(\w+)$#', $path, $matches))
 	require __DIR__.'/api/'.$matches[1].'.php';
 }
 else {
-	if(!canAccess($path))
+	if(accessLevel($path) < 1)
 		die("NOPE");
 	
 	if(is_dir($config['files'].$path)) {

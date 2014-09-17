@@ -38,36 +38,71 @@ function json($data)
 
 // ACLs
 
-function canAccessPath($path) {
+//Access level: 0 = nothing, 1 = view, 2 = edit
+require(__DIR__.'/auth.php');
+
+// Returns whether the given username matches against the list
+function accessMatch($username, $list)
+{
+	if(!is_array($list))
+		return false;
+
+	if(in_array('any', $list))
+		return true;
+
+	if($username == '')
+		return in_array('guests', $list);
+
+	// For registered users
+	return
+		in_array('users', $list) ||
+		in_array('user:'.$username, $list);
+}
+
+function accessLevelForPath($path)
+{
 	global $config;
 
-	if(!is_dir($config['files'].$path)) return true;
-	if(!is_file($config['files'].$path.'/.acl.json')) return true;
+	if(!is_dir($config['files'].$path)) return 2;
+	if(!is_file($config['files'].$path.'/.acl.json')) return 2;
 
 	$acl = file_get_contents($config['files'].$path.'/.acl.json');
 	$acl = json_decode($acl, true);
 
+	// If can't parse ACL, fail just in case.
 	if(!$acl)
-		return false;
+		return 0;
 
-	// TODO parse ACL
-	return true;
+	// Username, or empty string if not logged in.
+	$username = Auth::getUsername();
+
+	// Note: having write permission implies read permission.
+	if(isset($acl['write']) && accessMatch($username, $acl['write']))
+		return 2;
+
+	if(isset($acl['read']) && accessMatch($username, $acl['read']))
+		return 1;
+
+	return 0;
 }
 
-function canAccess($path) {
+function accessLevel($path)
+{
 	$input = explode("/", $path);
 	$path = '';
-	if(!canAccessPath($path))
-		return false;
+
+	$result = 2;
+
+	$result = min($result, accessLevelForPath($path));
+
 	foreach($input as $dir) {
 		if($dir == '' || $dir == '.' || $dir == '..')
 			continue;
 
 		$path .= '/'.$dir;
-		if(!canAccessPath($path))
-			return false;
+		$result = min($result, accessLevelForPath($path));
 	}
-	return true;
+	return $result;
 }
 
 

@@ -101,7 +101,7 @@ function listPath($path)
 	$path = fixPath($path);
 	$path = rtrim($path, '/');
 
-	if(!canAccess($path))
+	if(accessLevel($path) < 1)
 		return array(
 			'type' => 'nope',
 			'path' => $path,
