@@ -9,6 +9,16 @@
 </head>
 <body ng-class="{animate: animate}">
 	<div class="header_bar">
+		<div id="user">
+<?php
+	$username = Auth::getUsername();
+	if($username == '')
+		echo '<a reload="true" href="'.htmlspecialchars(Auth::getLoginUrl()).'">Log in</a>';
+	else
+		echo 'Hello, '.htmlspecialchars($username).'! <a reload="true" href="'.htmlspecialchars(Auth::getLogoutUrl()).'">Log out</a>';
+?>
+		</div>
+		<div id="logo"></div>
 	</div>
 	<div class="panels">
 		<div class="panel"

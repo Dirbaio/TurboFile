@@ -22,6 +22,20 @@ body {
 	z-index: 1000;
 }
 
+.header_bar #user {
+	float: right;
+	padding: 10px;
+}
+
+.header_bar #logo {
+	background-image: url('/_turbofile/logo.svg');
+	background-size: auto 35px;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 180px;
+	height: 38px;
+}
+
 .panel {
 	position: absolute;
 	height: 100%;

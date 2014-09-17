@@ -35,7 +35,7 @@ else {
 		else if(is_file($config['files'].$path.'index.htm'))
 			header("X-Accel-Redirect: /_files".$path."index.htm");
 		else
-			header("X-Accel-Redirect: /_turbofile/main.html");
+			require(__DIR__.'/page.php');
 	}
 	else {
 		// Setting Content-Type to empty will cause nginx
