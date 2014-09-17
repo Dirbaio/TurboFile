@@ -22,7 +22,7 @@
 			     	panel_dir: panel.type=='dir',
 			     	panel_file: panel.type=='file',
 			     }"
-			     style="transform:translateX({{calcLeft($index)}}px);"
+			     ng-style="{transform: 'translateX('+calcLeft($index)+'px)', '-webkit-transform': 'translateX('+calcLeft($index)+'px)'}"
 			     ng-switch="panel.type">
 				<div ng-switch-when="dir">
 					<a class="header" href="{{panel.path}}" reload="panel.reload">
