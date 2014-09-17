@@ -1,6 +1,9 @@
 <?php
 
-require __DIR__.'/config.php';
+$config = array(
+	'files' => $_SERVER['TURBOFILE_ROOT']
+);
+
 require __DIR__.'/lib.php';
 
 $path_unsafe = $_SERVER['DOCUMENT_URI'];
