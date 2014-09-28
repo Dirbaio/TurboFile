@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 $config = array(
 	'files' => $_SERVER['TURBOFILE_ROOT']
@@ -27,8 +27,9 @@ if(preg_match('#^/_turbofile_api/(\w+)$#', $path, $matches))
 	require __DIR__.'/api/'.$matches[1].'.php';
 }
 else {
-	if(accessLevel($path) < 1)
-		die("NOPE");
+	if(accessLevel($path) < 1) {
+		Auth::redirectToLogin();
+	}
 	
 	if(is_dir($config['files'].$path)) {
 		if(is_file($config['files'].$path.'index.php'))
