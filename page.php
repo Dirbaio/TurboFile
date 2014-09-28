@@ -52,7 +52,10 @@
 					<a class="header" href="{{panel.path}}" reload="panel.reload">
 						NOPE!
 					</a>
-					Sorry, you don't have permission to view this :(
+					Sorry, you don't have permission to view this. Please
+					<a href="{{panel.path}}" reload="true">
+						login!
+					</a>
 				</div>
 				<div ng-switch-when="file" class="h100">
 					<a class="header" href="{{panel.path}}" reload="true">
