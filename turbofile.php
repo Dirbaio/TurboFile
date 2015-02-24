@@ -31,13 +31,16 @@ else {
 		Auth::redirectToLogin();
 	}
 	
+	$qs = $_SERVER['QUERY_STRING'];
+	if($qs) $qs='?'.$qs;
+
 	if(is_dir($config['files'].$path)) {
 		if(is_file($config['files'].$path.'index.php'))
-			header("X-Accel-Redirect: /_files".$path."index.php");
+			header("X-Accel-Redirect: /_files".$path."index.php".$qs);
 		else if(is_file($config['files'].$path.'index.html'))
-			header("X-Accel-Redirect: /_files".$path."index.html");
+			header("X-Accel-Redirect: /_files".$path."index.html".$qs);
 		else if(is_file($config['files'].$path.'index.htm'))
-			header("X-Accel-Redirect: /_files".$path."index.htm");
+			header("X-Accel-Redirect: /_files".$path."index.htm".$qs);
 		else
 			require(__DIR__.'/page.php');
 	}
@@ -45,6 +48,6 @@ else {
 		// Setting Content-Type to empty will cause nginx
 		// to set the correct type when doing the accel redirect
 		header("Content-Type: ");
-		header("X-Accel-Redirect: /_files".$path);
+		header("X-Accel-Redirect: /_files".$path.$qs);
 	}
 }
