@@ -13,6 +13,8 @@ function getFileType($path)
 	}
 	else
 	{
+		$filetype = substr($mimetype, 0, strpos($mimetype, '/'));
+		if($filetype == 'application')
 			$filetype = 'object';
 	}
 	return $filetype;

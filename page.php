@@ -4,8 +4,11 @@
 	<base href="/">
 	<title>{{$location.path()}}</title>
 	<link rel="stylesheet" type="text/css" href="/_turbofile/css/app.css">
-	<link rel="stylesheet" type="text/css" href="/_turbofile/css/theme2.css">
+	<link rel="stylesheet" type="text/css" href="/_turbofile/css/theme3.css">
 	<link rel="stylesheet" type="text/css" href="/_turbofile/css/animations.css">
+	<link rel="stylesheet" type="text/css" href="/_turbofile/css/bootstrap.min.css">
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&amp;skin=sons-of-obsidian" defer="defer"></script>
+	<script src="https://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js" defer="defer"></script>
 </head>
 <body ng-class="{animate: animate}">
 	<div class="header_bar">
@@ -37,15 +40,16 @@
 			     ng-style="{transform: 'translateX('+calcLeft($index)+'px)', '-webkit-transform': 'translateX('+calcLeft($index)+'px)'}"
 			     ng-switch="panel.type">
 				<div ng-switch-when="dir">
-					<a class="header" href="{{panel.path}}" reload="panel.reload">
+					<a class="header" href="{{panel.path}}" reload="panel.reload" title="{{panel.name}}/">
 						{{panel.name}}/
 					</a>
 					<a class="file"
 					   ng-repeat="file in panel.files"
 					   href="{{file.link}}"
 					   ng-class="{selected: file.name==panels[$parent.$index+1].name}"
-					   reload="file.reload">
-						{{file.name}}{{file.type=='dir'?'/':''}}
+					   reload="file.reload"
+					   title="{{file.name}}{{file.type=='dir'?'/':''}}">
+						<i class="icon glyphicon glyphicon-{{file.type=='dir'?'folder-open':'file'}}"></i>{{file.name}}{{file.type=='dir'?'/':''}}
 					</a>
 				</div>
 				<div ng-switch-when="nope">
@@ -66,7 +70,7 @@
 							<img ng-src="{{panel.path}}">
 						</a>
 
-						<div ng-switch-when="text" class="textview">{{panel.text}}</div>
+						<pre ng-switch-when="text" class="textview prettyprint linenums">{{panel.text}}</pre>
 
 						<audio ng-switch-when="audio" controls autoplay>
 							<source ng-src="{{panel.path}}" type="{{panel.mimetype}}">

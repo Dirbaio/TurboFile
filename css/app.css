@@ -28,11 +28,11 @@ body {
 }
 
 .header_bar #logo {
-	background-image: url('/_turbofile/logo.svg');
+	background-image: url('/_turbofile/logo.png');
 	background-size: auto 35px;
 	background-repeat: no-repeat;
 	background-position: center;
-	width: 180px;
+	width: 233px;
 	height: 38px;
 }
 
@@ -53,7 +53,7 @@ body {
 	height: 100%;
 	top: 0;
 	left: 0;
-	width: 200px;
+	width: 250px;
 
 	box-sizing: border-box;
 	padding-top: 40px;
@@ -68,7 +68,7 @@ body {
 }
 
 .panel_inner.panel_file {
-	width: 800px;
+	width: 850px;
 }
 
 
@@ -86,9 +86,13 @@ body {
 
 .panel a.file {
 	display: block;
-	padding: 2px 10px;
+	padding: 2px 0px;
 	text-decoration: none;
 	font-weight: bold;
+}
+
+.panel a.file .icon {
+	margin: 0 5px;
 }
 
 .panel a.file.selected {
@@ -113,6 +117,7 @@ body {
 
 .fileview.file_text {
 	text-align: left;
+	margin: 0;
 }
 
 .fileview .odtview {

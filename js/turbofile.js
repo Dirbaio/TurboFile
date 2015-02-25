@@ -66,13 +66,14 @@ app.controller('TurboFileCtrl', function ($scope, ajax, $location, $timeout, $wi
 				});
 				$timeout(function() {
 					$scope.animate=true;
+					prettyPrint();
 				}, 20);
 			});
 		}
 	};
 
 	$scope.calcLeft = function(i) {
-		var width = $scope.panels.length*200;
+		var width = $scope.panels.length*250;
 		if($scope.panels.length != 0 &&
 			$scope.panels[$scope.panels.length-1].type == 'file')
 			width += 600;
@@ -80,7 +81,7 @@ app.controller('TurboFileCtrl', function ($scope, ajax, $location, $timeout, $wi
 		var win = $window.innerWidth;
 		var disp = win-width;
 
-		var pos = i*200;
+		var pos = i*250;
 		if(disp > 0) return pos;
 
 		var compress = Math.min(win/2, width-win);
