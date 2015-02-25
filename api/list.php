@@ -7,14 +7,25 @@ function getFileType($path)
 
 	if($mimetype == null)
 		$filetype = '';
-	else if(strpos(system_extension_mime_type($path), "opendocument.text") !== FALSE)
+	else if(strpos($mimetype, "opendocument.text") !== FALSE)
 	{
 		$filetype = 'opendocument.text';
 	}
 	else
-		$filetype = substr($mimetype, 0, strpos($mimetype, '/'));
-	if($filetype == 'application')
+	{
 		$filetype = '';
+		require "object_mimetypes.php";
+		if (in_array($mimetype, $object_mimetypes))
+		{
+			$filetype = 'object';
+		}
+		else
+		{
+			$filetype = substr($mimetype, 0, strpos($mimetype, '/'));
+			if($filetype == 'application')
+				$filetype = '';
+		}
+	}
 	return $filetype;
 }
 
@@ -87,18 +98,19 @@ function listFile($path)
 	if($filetype == 'text')
 		$text = file_get_contents($config['files'].$path);
 	else if($filetype == 'opendocument.text')
-	{		
-		require("ophir.php");
-		$OPHIR_CONF["header"]     = 1;
-		$OPHIR_CONF["quote"]      = 1;
-		$OPHIR_CONF["list"]       = 1;
-		$OPHIR_CONF["table"]      = 1;
-		$OPHIR_CONF["footnote"]   = 1;
-		$OPHIR_CONF["link"]       = 1;
-		$OPHIR_CONF["image"]      = 1;
-		$OPHIR_CONF["note"]       = 1;
-		$OPHIR_CONF["annotation"] = 1;
-		$text = odt2html($config['files'].$path);
+	{	
+		require("Ophir.php");
+		$ophir = new \lovasoa\Ophir();
+		$ophir->setConfiguration(\lovasoa\Ophir::HEADINGS,          \lovasoa\Ophir::ALL);
+		$ophir->setConfiguration(\lovasoa\Ophir::LISTS,             \lovasoa\Ophir::ALL);
+		$ophir->setConfiguration(\lovasoa\Ophir::TABLE,             \lovasoa\Ophir::ALL);
+		$ophir->setConfiguration(\lovasoa\Ophir::FOOTNOTE,          \lovasoa\Ophir::ALL);
+		$ophir->setConfiguration(\lovasoa\Ophir::LINK,              \lovasoa\Ophir::ALL);
+		$ophir->setConfiguration(\lovasoa\Ophir::IMAGE,             \lovasoa\Ophir::ALL);
+		$ophir->setConfiguration(\lovasoa\Ophir::NOTE,              \lovasoa\Ophir::ALL);
+		$ophir->setConfiguration(\lovasoa\Ophir::ANNOTATION,        \lovasoa\Ophir::ALL);
+		$ophir->setConfiguration(\lovasoa\Ophir::TABLE_OF_CONTENTS, \lovasoa\Ophir::ALL);
+		$text = $ophir->odt2html($config['files'].$path);
 	}
 	else
 		$text = '';

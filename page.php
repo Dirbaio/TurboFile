@@ -78,7 +78,11 @@
 							Your browser does not support the video element.
 						</video>
 
-						<div ng-switch-when="opendocument.text" ng-bind-html="panel.text" class="odtview"></div>
+						<div ng-switch-when="opendocument.text" ng-bind-html="panel.text | unsafe" class="odtview"></div>
+
+						<object ng-switch-when="object" data="{{panel.path}}" type="{{panel.mimetype}}">
+							<iframe width="0" height="0" frameborder="0" src="{{panel.path}}"></iframe>
+						</object>
 
 						<div ng-switch-default>
 							??? {{panel.filetype}}
