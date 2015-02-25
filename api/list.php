@@ -27,14 +27,15 @@ function isReloadDir($path)
 function listDir($path)
 {
 	global $config;
-
+	$list_exclude = array(".acl.json");
+	
 	$dirs = array();
 	$files = array();
 	if ($handle = @opendir($config['files'].$path))
 	{
 		while (false !== ($file = readdir($handle)))
 		{
-			if ($file == "." || $file == "..")  continue;
+			if ($file == "." || $file == ".." || in_array($file, $list_exclude) || (is_dir($config['files'].$path.'/'.$file) && accessLevel($path.'/'.$file.'/') < 1))  continue;
 
 			if (is_dir($config['files'].$path.'/'.$file)) {
 
