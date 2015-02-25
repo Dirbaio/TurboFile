@@ -30,6 +30,11 @@ function isReloadDir($path)
 		|| is_file($config['files'].$path.'/'.'index.php');
 }
 
+function compFileDir($a, $b)
+{
+	return strcmp(strtolower($a['name']), strtolower($b['name']));
+}
+
 function listDir($path)
 {
 	global $config;
@@ -67,7 +72,8 @@ function listDir($path)
 				);
 			}
 		}
-
+		usort($dirs, "compFileDir");
+		usort($files, "compFileDir");
 		closedir($handle); 
 	}
 
