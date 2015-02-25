@@ -7,6 +7,10 @@ function getFileType($path)
 
 	if($mimetype == null)
 		$filetype = '';
+	else if(strpos(system_extension_mime_type($path), "opendocument.text") !== FALSE)
+	{
+		$filetype = 'opendocument.text';
+	}
 	else
 		$filetype = substr($mimetype, 0, strpos($mimetype, '/'));
 	if($filetype == 'application')
@@ -82,6 +86,20 @@ function listFile($path)
 
 	if($filetype == 'text')
 		$text = file_get_contents($config['files'].$path);
+	else if($filetype == 'opendocument.text')
+	{		
+		require("ophir.php");
+		$OPHIR_CONF["header"]     = 1;
+		$OPHIR_CONF["quote"]      = 1;
+		$OPHIR_CONF["list"]       = 1;
+		$OPHIR_CONF["table"]      = 1;
+		$OPHIR_CONF["footnote"]   = 1;
+		$OPHIR_CONF["link"]       = 1;
+		$OPHIR_CONF["image"]      = 1;
+		$OPHIR_CONF["note"]       = 1;
+		$OPHIR_CONF["annotation"] = 1;
+		$text = odt2html($config['files'].$path);
+	}
 	else
 		$text = '';
 
@@ -112,7 +130,7 @@ function listPath($path)
 		return listDir($path);
 	if(is_file($config['files'].$path))
 		return listFile($path);
-	
+
 	return list404();
 }
 

@@ -78,6 +78,8 @@
 							Your browser does not support the video element.
 						</video>
 
+						<div ng-switch-when="opendocument.text" ng-bind-html="panel.text" class="odtview"></div>
+
 						<div ng-switch-default>
 							??? {{panel.filetype}}
 						</div>
@@ -89,6 +91,7 @@
 
 	<script type="text/javascript" src="/_turbofile/js/angular.min.js"></script>
 	<script type="text/javascript" src="/_turbofile/js/angular-animate.min.js"></script>
+	<script type="text/javascript" src="/_turbofile/js/angular-sanitize.min.js"></script>
 	<script type="text/javascript" src="/_turbofile/js/turbofile.js"></script>
 </body>
 </html>

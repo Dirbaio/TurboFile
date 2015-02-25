@@ -1,7 +1,7 @@
 "use strict";
 
 
-var app = angular.module('TurboFileApp', ['ngAnimate']);
+var app = angular.module('TurboFileApp', ['ngAnimate','ngSanitize']);
 
 app.controller('TurboFileCtrl', function ($scope, ajax, $location, $timeout, $window) {
 	ajax('test', {num: 123}, function(data){
