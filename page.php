@@ -75,7 +75,7 @@
 
 						<video ng-switch-when="video" autoplay controls>
 							<source ng-src="{{panel.path}}" type="{{panel.mimetype}}">
-							Your browser does not support the audio element.
+							Your browser does not support the video element.
 						</video>
 
 						<div ng-switch-default>
