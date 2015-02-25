@@ -80,9 +80,7 @@
 
 						<div ng-switch-when="opendocument.text" ng-bind-html="panel.text | unsafe" class="odtview"></div>
 
-						<object ng-switch-when="object" data="{{panel.path}}" type="{{panel.mimetype}}">
-							<iframe width="0" height="0" frameborder="0" src="{{panel.path}}"></iframe>
-						</object>
+						<iframe ng-switch-when="object" frameborder="0" src="{{panel.path}}"></iframe>
 
 						<div ng-switch-default>
 							??? {{panel.filetype}}

@@ -13,18 +13,7 @@ function getFileType($path)
 	}
 	else
 	{
-		$filetype = '';
-		require "object_mimetypes.php";
-		if (in_array($mimetype, $object_mimetypes))
-		{
 			$filetype = 'object';
-		}
-		else
-		{
-			$filetype = substr($mimetype, 0, strpos($mimetype, '/'));
-			if($filetype == 'application')
-				$filetype = '';
-		}
 	}
 	return $filetype;
 }
